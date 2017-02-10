@@ -85,7 +85,7 @@ FFTW_LDFLAGS ?= -lm -L$(FFTW_INSTALL_PATH)/lib -lfftw3f
 SM_VERSIONS := sm_21
 
 # Basic directory setup for SDK
-SRCDIR     ?= 
+SRCDIR     ?= src
 ROOTDIR    ?= $(CUDA_SAMPLES_PATH)
 BINDIR     ?= .
 ROOTOBJDIR ?= obj_$(OBJDIRPR)
@@ -97,7 +97,7 @@ CXX        := $(COMPILER) $(OMPFLAG)
 LINK       := $(COMPILER) -fPIC $(OMPFLAG)
 
 # Includes
-INCLUDES  += -I.
+INCLUDES  += -I$(SRCDIR)
 ifeq ($(USE_GPU),1)
 	INCLUDES += -I$(CUDA_INSTALL_PATH)/include -I$(COMMONDIR)/inc
 endif
@@ -153,22 +153,22 @@ CXXFLAGS  += $(COMMONFLAGS)
 # Set up object files
 ################################################################################
 OBJDIR := $(ROOTOBJDIR)
-OBJS +=  $(patsubst %.cpp,$(OBJDIR)/%.cpp.o,$(notdir $(CCFILES)))
-OBJS +=  $(patsubst %.c,$(OBJDIR)/%.c.o,$(notdir $(CCFILES)))
-OBJS +=  $(patsubst %.cu,$(OBJDIR)/%.cu.o,$(notdir $(CUFILES)))
+OBJS +=  $(patsubst %.cpp,$(OBJDIR)/%.cpp.o,$(notdir $(addprefix $(SRCDIR)/, $(CCFILES))))
+OBJS +=  $(patsubst %.c,$(OBJDIR)/%.c.o,$(notdir $(addprefix $(SRCDIR)/, $(CCFILES))))
+OBJS +=  $(patsubst %.cu,$(OBJDIR)/%.cu.o,$(notdir $(addprefix $(SRCDIR)/, $(CUFILES))))
 OBJS :=  $(filter %.o,$(OBJS))
 
 ################################################################################
 # Rules
 ################################################################################
 
-$(OBJDIR)/%.c.o : $(SRCDIR)%.c $(C_DEPS)
+$(OBJDIR)/%.c.o : $(SRCDIR)/%.c $(C_DEPS)
 	$(VERBOSE)$(CXX) $(CXXFLAGS) -o $@ -c $<
 
-$(OBJDIR)/%.cpp.o : $(SRCDIR)%.cpp $(C_DEPS)
+$(OBJDIR)/%.cpp.o : $(SRCDIR)/%.cpp $(C_DEPS)
 	$(VERBOSE)$(CXX) $(CXXFLAGS) -o $@ -c $<
 
-$(OBJDIR)/%.cu.o : $(SRCDIR)%.cu $(CU_DEPS)
+$(OBJDIR)/%.cu.o : $(SRCDIR)/%.cu $(CU_DEPS)
 	$(VERBOSE)$(NVCC) $(NVCCFLAGS) $(SMVERSIONFLAGS) -o $@ -c $<
 
 define SMVERSION_template
@@ -193,8 +193,8 @@ messeages :
 makedirectories :
 	$(VERBOSE)mkdir -p $(OBJDIR)
 
-decoygen : decoygen.cpp
-	$(VERBOSE)$(CPPCOMPILER) decoygen.cpp -lm -o decoygen
+decoygen : $(SRCDIR)/decoygen.cpp
+	$(VERBOSE)$(CPPCOMPILER) $(SRCDIR)/decoygen.cpp -lm -o decoygen
 
 .PHONY : clean allclean
 clean :
