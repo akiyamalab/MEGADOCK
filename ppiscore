@@ -1,0 +1,113 @@
+#!/usr/bin/perl -w
+#
+# Copyright (C) 2014 Tokyo Institute of Technology
+#
+#
+# This file is part of MEGADOCK.
+# MEGADOCK is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# MEGADOCK is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# You should have received a copy of the GNU General Public License
+# along with MEGADOCK.  If not, see <http://www.gnu.org/licenses/>.
+#
+# =====================================================================
+# 
+#   Software Name : MEGADOCK (calculate PPI score)
+#
+#   Contact address : Tokyo Institute of Technology, AKIYAMA Lab.
+#
+#   Last update: Oct. 10, 2014
+#
+# =====================================================================
+
+use File::Basename;
+
+if ( (@ARGV != 2 and @ARGV != 3) or ($ARGV[1] !~ /^[0-9]+$/) ){
+    print "Usage : $0 [outfile] [#decoys]\n";
+    print "Usage : $0 [outfile] [#decoys] [ZRANK outfile]\n";
+    exit(1);
+}
+
+$decoys = $ARGV[1];
+
+# outfile read
+$outfile = $ARGV[0];
+open(IN, "tail -n +5 ./" . $outfile . " |");
+
+@rawscore = (); 
+while ( $line = <IN> ) {	
+    chomp $line;
+    @line_arr = split (/\s+/, $line);
+    push(@rawscore, $line_arr[6]);	
+}
+
+# ZRANK outfile read
+if ( @ARGV == 3 ){
+    $zrankoutfile = $ARGV[2];
+    @zrankscores = ();
+    open(ZRIN, "cut -f 2 ./" . $zrankoutfile . " |");
+    while ( $line = <ZRIN> ) {
+        chomp $line;
+        push( @zrankscores, $line);
+    }
+    @zrankranks = sort { $zrankscores[$a] <=> $zrankscores[$b] } 0 .. $#zrankscores;
+    #print join("\n", @zrankranks);
+}
+
+for (my $i = 0; $i < $decoys; $i++){
+    if ( @ARGV == 3 ) { # with ZRANK
+        push(@score, $rawscore[$zrankranks[$i]]);
+    } else { # without ZRANK
+        push(@score, $rawscore[$i]);
+    }
+}
+#print join("\n", @score);
+$p = basename($outfile);
+
+eval {
+    $zs = sprintf("%.4f", zscore($score[0], @score));
+    if ( @ARGV == 3 ) { # with ZRANK
+        print $p, ", E = ", $zs, ", ", $decoys, " decoys, with Reranking\n";
+    } else { # without ZRANK
+        print $p, ", E = ", $zs, ", ", $decoys, " decoys\n";
+    }
+};
+
+if( $@ ){  # error message in $@ 
+    print $p, ", !!zero divided error!!\n";
+}
+    
+close(IN);
+
+##########################################################
+sub ave {
+    my $n = scalar(@_);
+    my $s = 0;
+    while (@_) {
+	my $t = shift;
+	$s += $t;
+    }
+    return $s/$n;
+}
+
+sub std {
+    my $n = scalar(@_);
+    my $ss = 0;
+    my $av = ave(@_);
+    while (@_) {
+	my $t = shift;
+	$ss += ($t - $av)**2;
+    }
+    return sqrt($ss/$n);
+}
+
+sub zscore { # zscore( $s, @score )
+    my $s = shift;
+    return ($s - ave(@_))/std(@_) ;
+}

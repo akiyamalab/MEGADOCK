@@ -1,0 +1,6 @@
+TITLE=sample jobs
+PARAM=-R $1 -L $2 -O
+1gcq_r.pdb	1gcq_r.pdb
+1gcq_r.pdb	1gcq_l.pdb
+1gcq_l.pdb	1gcq_r.pdb
+1gcq_l.pdb	1gcq_l.pdb
