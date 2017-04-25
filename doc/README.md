@@ -14,7 +14,7 @@ However, you can compile and run the program on other cluster systems or persona
 
 ## Example
 
-### move to pdb-data directory
+### move to example data directory
 ```
 cd ./data
 ```
