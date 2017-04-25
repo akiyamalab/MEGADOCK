@@ -3,6 +3,8 @@
 **MEGADOCK 4.0** is a structural bioinformatics software for FFT-grid-based protein-protein docking that takes advantage of the massively parallel CUDA architechture of NVIDIA GPUs and multiple computation nodes.  
 [http://www.bi.cs.titech.ac.jp/megadock/](http://www.bi.cs.titech.ac.jp/megadock/)
 
+[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
+
 ## Requirements
 - [FFTW3](http://www.fftw.org)
   - `--enable-float` flag must be specified when you compile FFTW3 (see also FAQ).
