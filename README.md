@@ -4,6 +4,7 @@
 [http://www.bi.cs.titech.ac.jp/megadock/](http://www.bi.cs.titech.ac.jp/megadock/)
 
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
+[![Build Status](https://travis-ci.org/akiyamalab/MEGADOCK.svg?branch=master)](https://travis-ci.org/akiyamalab/MEGADOCK)
 
 ## Requirements
 - [FFTW3](http://www.fftw.org)

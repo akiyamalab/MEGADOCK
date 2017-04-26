@@ -1,0 +1,27 @@
+sudo: required
+
+language: cpp
+
+services:
+  - docker
+
+before_install:
+  - sudo apt-get update
+  - sudo apt-get -y -q -o Dpkg::Options::="--force-confnew" install docker-engine
+  - docker -v
+
+before_script:
+  - git clone https://github.com/akiyamalab/MEGADOCK.git
+  - sudo docker build . -f Dockerfiles/Dockerfile.cpu -t megadock:cpu
+  - sudo docker build . -f Dockerfiles/Dockerfile.mpi -t megadock:mpi
+  
+script:
+  - sudo docker run  -it megadock:cpu  megadock -R 1gcq_r.pdb -L 1gcq_r.pdb
+  - sudo docker run  -it megadock:mpi  mpirun -n 4 megadock-dp -tb SAMPLE.table
+  
+notifications:
+  emails:
+    - aoyama@bi.c.titech.ac.jp
+#    - github@bi.cs.titech.ac.jp
+  on_success: always # default: change
+  on_failure: always
