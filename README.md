@@ -6,27 +6,30 @@
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 [![Build Status](https://travis-ci.org/akiyamalab/MEGADOCK.svg?branch=master)](https://travis-ci.org/akiyamalab/MEGADOCK)
 
+
+## Target Environments
+| Type | Environment     | Parallelization   |
+|:----:|-----------------|-------------------|
+|  (a) | GPU cluster     | GPU, MPI + OpenMP |
+|  (b) | CPU cluster     | MPI + OpenMP      |
+|  (c) | GPU single node | GPU               |
+|  (d) | CPU single node | OpenMP            |
+
 ## Requirements
-- [FFTW3](http://www.fftw.org)
-  - `--enable-float` flag must be specified when you compile FFTW3 (see also FAQ).
-- [OpenMPI](http://www.open-mpi.org) (if you use MPI)
-- [CUDA Toolkit](https://developer.nvidia.com/cuda-zone) ver >= 5.0 (if you use GPU)
-- [GPU Computing SDK code samples](https://developer.nvidia.com/cuda-zone) (if you use GPU)
-  - CUDA SDK, **same version as CUDA Toolkit**
+| Libraries                                                       | GPU cluster | CPU cluster | GPU | CPU | Notes |
+|:----------------------------------------------------------------|:-----------:|:-----------:|:---:|:---:|:------|
+| [FFTW3](http://www.fftw.org)                                    | x           | x           | x   | x   | `--enable-float` flag required in compile (see [FAQ](http://www.bi.cs.titech.ac.jp/megadock/faq.html))|
+| [OpenMPI](http://www.open-mpi.org)                              | x           | x           |     |     |       |
+| [CUDA Toolkit](https://developer.nvidia.com/cuda-zone)          | x           |             | x   |     | `ver >= 5.0` required |
+| [CUDA SDK code samples](https://developer.nvidia.com/cuda-zone) | x           |             | x   |     | **same version as CUDA Toolkit required** |
 
 ## Installation
-You can use MEGADOCK 4.0 on various environment.
-- (a) GPU cluster
-- (b) CPU cluster
-- (c) GPU single node 
-- (d) CPU single node
-
 Please refer to the following documents and see the appropriate instructions for your environment.  
 * [doc/BUILD.md](./doc/BUILD.md)
 * [doc/README.md](./doc/README.md)
 
 ### MEGADOCK in Docker Container
-[Dockerfiles/README.md](Dockerfiles/README.md).
+[Dockerfiles/README.md](Dockerfiles/README.md)
 
 
 ## Reference
