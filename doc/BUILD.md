@@ -1,15 +1,23 @@
 # Build Documentation
 
-## Required Tools
-* FFTW3
-  - http://www.fftw.org
-* OpenMPI (if you use MPI)
-  - http://www.open-mpi.org
-* CUDA Toolkit ver >= 5.0 (if you use GPU)
-  - https://developer.nvidia.com/cuda-zone
-* GPU Computing SDK code samples (CUDA SDK, **same version as CUDA Toolkit**, if you use GPU)
-  - https://developer.nvidia.com/cuda-zone
+## Target Environments
+| Type | Environment     | Parallelization   |
+|:----:|-----------------|-------------------|
+|  (a) | GPU cluster     | GPU, MPI + OpenMP |
+|  (b) | CPU cluster     | MPI + OpenMP      |
+|  (c) | GPU single node | GPU               |
+|  (d) | CPU single node | OpenMP            |
 
+## Requirements
+| Libraries                                                       | GPU cluster | CPU cluster | GPU | CPU | Notes |
+|:----------------------------------------------------------------|:-----------:|:-----------:|:---:|:---:|:------|
+| [FFTW3](http://www.fftw.org)                                    | x           | x           | x   | x   | `--enable-float` flag required in compile (see [FAQ](http://www.bi.cs.titech.ac.jp/megadock/faq.html))|
+| [OpenMPI](http://www.open-mpi.org)                              | x           | x           |     |     |       |
+| [CUDA Toolkit](https://developer.nvidia.com/cuda-zone)          | x           |             | x   |     | `ver >= 5.0` required |
+| [CUDA SDK code samples](https://developer.nvidia.com/cuda-zone) | x           |             | x   |     | **same version as CUDA Toolkit required** |
+
+#### Notes
+For more detailed information, please reffer to the [FAQ](http://www.bi.cs.titech.ac.jp/megadock/faq.html) page.
 
 --------------------------------------------------------
 
