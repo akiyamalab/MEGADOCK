@@ -3,7 +3,7 @@
 **MEGADOCK 4.0** is a structural bioinformatics software for FFT-grid-based protein-protein docking that takes advantage of the massively parallel CUDA architechture of NVIDIA GPUs and multiple computation nodes.  
 [http://www.bi.cs.titech.ac.jp/megadock/](http://www.bi.cs.titech.ac.jp/megadock/)
 
-[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](LICENSE)
 [![Build Status](https://travis-ci.org/akiyamalab/MEGADOCK.svg?branch=master)](https://travis-ci.org/akiyamalab/MEGADOCK)
 
 
