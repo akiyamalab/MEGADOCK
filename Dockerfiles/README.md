@@ -1,18 +1,24 @@
 # Dockerfiles
 
-## Requirement
-* [Docker](https://docs.docker.com/engine/installation/)
-* [nvidia-docker](https://github.com/NVIDIA/nvidia-docker) ( if you use GPU)
+Docker images can be downloaded from DockerHub.  
+[https://hub.docker.com/r/akiyamalab/megadock/](https://hub.docker.com/r/akiyamalab/megadock/)
+
+## Build Requirements
+| Requirement Tools                                         | GPU cluster | CPU cluster | GPU | CPU | Notes       |
+|:----------------------------------------------------------|:-----------:|:-----------:|:---:|:---:|:------------|
+| [Docker](https://docs.docker.com/engine/installation/)    | N/A         | x           | x   | x   |             |
+| [nvidia-docker](https://github.com/NVIDIA/nvidia-docker)  | N/A         |             | x   |     | for GPU use |
+| [CUDA Toolkit](https://developer.nvidia.com/cuda-zone)    | N/A         |             | x   |     | for GPU use |
 
 
-## Compile (a): GPU, MPI & OpenMP hybrid parallelization
+## (a): GPU, MPI & OpenMP hybrid parallelization
 
 **Note: Currently NOT Available**
 
-## Compile (b): MPI & OpenMP hybrid parallelization (no use GPU)
+## (b): MPI & OpenMP hybrid parallelization (no use GPU)
 
 **Note: Currently DO NOT support multi-node execution**  
-If you use this Docker image on clusters, please configure `sshd` and use container orchestration tools. (e.g. Docker Swarm, Kubernetes, Apache Mesos, etc.)
+If you use this Docker image for running on multi-node, please configure `sshd` and use container orchestration tools. (e.g. Docker Swarm, Kubernetes, Apache Mesos, etc.)
 
 ### 1. build Docker image
 ```sh
@@ -34,7 +40,7 @@ docker run -it  \
 ```
 
 
-## Compile (c): GPU parallelization (on single node)
+## (c): GPU parallelization (on single node)
 
 **[nvidia-docker](https://github.com/NVIDIA/nvidia-docker) is required.**
 
@@ -58,7 +64,7 @@ nvidia-docker run -it  \
 ```
 
 
-## Compile (d): CPU single node (only thread parallelization)
+## (d): CPU single node (only thread parallelization)
 
 ### 1. build Docker image
 ```sh
