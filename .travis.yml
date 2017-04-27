@@ -12,12 +12,12 @@ before_install:
 
 before_script:
   - git clone https://github.com/akiyamalab/MEGADOCK.git
-  - sudo docker build . -f Dockerfiles/Dockerfile.cpu -t megadock:cpu
-  - sudo docker build . -f Dockerfiles/Dockerfile.mpi -t megadock:mpi
+  - sudo docker build . -f Dockerfiles/Dockerfile.cpu -t akiyamalab/megadock:cpu
+  - sudo docker build . -f Dockerfiles/Dockerfile.mpi -t akiyamalab/megadock:mpi
   
 script:
-  - sudo docker run  -it megadock:cpu  megadock -R 1gcq_r.pdb -L 1gcq_r.pdb
-  - sudo docker run  -it megadock:mpi  mpirun -n 4 megadock-dp -tb SAMPLE.table
+  - sudo docker run  -it akiyamalab/megadock:cpu  megadock -R 1gcq_r.pdb -L 1gcq_r.pdb
+  - sudo docker run  -it akiyamalab/megadock:mpi  mpirun -n 4 megadock-dp -tb SAMPLE.table
   
 notifications:
   emails:
