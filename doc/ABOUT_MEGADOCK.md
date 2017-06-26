@@ -1,6 +1,7 @@
-# MEGADOCK version 4.0.2 README 
+# About MEGADOCK
 
-This is the README file of the MEGADOCK release 4.0.2 program.   
+> version: MEGADOCK 4.0.2
+
 MEGADOCK is a ZDOCK like protein-protein docking program suitable for executing multiple docking jobs on heterogeneous supercomputers.  
 It optimizes shape complementarity (rPSC function), electrostatic energies, and desolvation free energies (RDE function) using Fast Fourier Transform algorithm.  
 
