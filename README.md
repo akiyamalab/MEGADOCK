@@ -26,7 +26,7 @@
 ## Installation
 Please refer to the following documents and see the appropriate instructions for your environment.  
 * [doc/BUILD.md](./doc/BUILD.md)
-* [doc/README.md](./doc/README.md)
+* [doc/ABOUT_MEGADOCK.md](./doc/ABOUT_MEGADOCK.md)
 
 ### MEGADOCK in Docker Container
 [Dockerfiles/README.md](Dockerfiles/README.md)
