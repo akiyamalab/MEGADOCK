@@ -30,7 +30,7 @@ RUN apt-get install -y --no-install-recommends cuda-samples-8-0
 ENV MEGADOCK_WORK_DIR /opt/MEGADOCK
 
 ADD . ${MEGADOCK_WORK_DIR}
-COPY ./Dockerfiles/Makefile.gpu ${MEGADOCK_WORK_DIR}/Makefile
+COPY ./Dockerfiles/gpu/Makefile ${MEGADOCK_WORK_DIR}/Makefile
 
 WORKDIR ${MEGADOCK_WORK_DIR}
 

@@ -24,7 +24,7 @@ RUN wget -P /tmp http://www.fftw.org/${FFTW_TARGET}.tar.gz  &&  \
 ENV MEGADOCK_WORK_DIR /opt/MEGADOCK
 
 ADD . ${MEGADOCK_WORK_DIR}
-COPY ./Dockerfiles/Makefile.cpu ${MEGADOCK_WORK_DIR}/Makefile
+COPY ./Dockerfiles/cpu/Makefile ${MEGADOCK_WORK_DIR}/Makefile
 
 RUN cd ${MEGADOCK_WORK_DIR} && make
 
