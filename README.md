@@ -1,7 +1,6 @@
 # MEGADOCK 4.0
 
-**MEGADOCK 4.0** is a structural bioinformatics software for FFT-grid-based protein-protein docking that takes advantage of the massively parallel CUDA architechture of NVIDIA GPUs and multiple computation nodes.  
-[http://www.bi.cs.titech.ac.jp/megadock/](http://www.bi.cs.titech.ac.jp/megadock/)
+**MEGADOCK 4.0** is a structural bioinformatics software for FFT-grid-based protein-protein using MPI/OpenMP/GPU parallelization.
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](LICENSE)
 [![Build Status](https://travis-ci.org/akiyamalab/MEGADOCK.svg?branch=master)](https://travis-ci.org/akiyamalab/MEGADOCK)
@@ -24,19 +23,20 @@
 | [CUDA SDK code samples](https://developer.nvidia.com/cuda-zone) | x           |             | x   |     | **same version as CUDA Toolkit** |
 
 ## Installation
-Please refer to the following documents and see the appropriate instructions for your environment.  
-* [doc/BUILD.md](./doc/BUILD.md)
-* [doc/ABOUT_MEGADOCK.md](./doc/ABOUT_MEGADOCK.md)
+Please read appropriate documents for your environment.  
+- [doc/BUILD.md](./doc/BUILD.md)
+- [doc/ABOUT_MEGADOCK.md](./doc/ABOUT_MEGADOCK.md)
 
-### MEGADOCK in Docker Container
-[Dockerfiles/README.md](Dockerfiles/README.md)
+### MEGADOCK for Docker
+- Prebuild image : [akiyamalab/megadock](https://hub.docker.com/r/akiyamalab/megadock/) (Docker Hub)
+- Build from Dockerfile : [Dockerfiles/README.md](Dockerfiles/README.md)
 
 
 ## Reference
 Masahito Ohue, Takehiro Shimoda, Shuji Suzuki, Yuri Matsuzaki, Takashi Ishida, Yutaka Akiyama. MEGADOCK 4.0: an ultra-high-performance protein-protein docking software for heterogeneous supercomputers, Bioinformatics, 30(22): 3281-3283, 2014.
 
 ## Older Versions
-For older versions can be downloaded from the following URL.  
+For older versions are available here.    
 [http://www.bi.cs.titech.ac.jp/megadock/archives/](http://www.bi.cs.titech.ac.jp/megadock/archives/)
 
 ## Lisence
@@ -46,5 +46,5 @@ MEGADOCK is open source licensed under the GNU General Public License, version 3
 This work is partially supported by JSPS Grant-in-Aid for Scientific Research (KAKENHI) (A) Grant Number 24240044.
 
 ----
-Copyright © 2014-2017 Akiyama Laboratory, Tokyo Institute of Technology, All Rights Reserved.
+Copyright © 2014-2018 Akiyama Laboratory, Tokyo Institute of Technology, All Rights Reserved.
 
