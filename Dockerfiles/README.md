@@ -7,8 +7,8 @@ Docker images can be downloaded from DockerHub.
 | Requirement Tools                                         | GPU cluster | CPU cluster | GPU | CPU | Notes       |
 |:----------------------------------------------------------|:-----------:|:-----------:|:---:|:---:|:------------|
 | [Docker](https://docs.docker.com/engine/installation/)    | N/A         | N/A           | x   | x   |             |
-| [nvidia-docker](https://github.com/NVIDIA/nvidia-docker)  | N/A         | N/A           | x   |     | for GPU |
-| [CUDA driver](https://developer.nvidia.com/cuda-zone)    | N/A         | N/A            | x   |     | for GPU |
+| [nvidia-docker](https://github.com/NVIDIA/nvidia-docker)  | N/A         | N/A           | x   |     | > 2.0 |
+| [CUDA driver](https://developer.nvidia.com/cuda-zone)    | N/A         | N/A            | x   |     |  |
 
 ## Simple Example
 ```sh
@@ -49,17 +49,17 @@ docker run -it \
 ### 1. build Docker image
 ```sh
 # on ${MEGADOCK_ROOT} dir
-nvidia-docker build . -f Dockerfiles/Dockerfile.gpu -t akiyamalab/megadock:gpu
+docker build . -f Dockerfiles/Dockerfile.gpu -t akiyamalab/megadock:gpu
 ```
 
 ### 2. run sample
 ```sh
-nvidia-docker run -it  \
+docker run -it --runtime=nvidia \
     akiyamalab/megadock:gpu  \
     megadock-gpu -R 1gcq_r.pdb -L 1gcq_r.pdb
 
 # run with your pdb ( ${DATA_PATH} = your pdb-data directory abs path  )
-nvidia-docker run -it  \
+docker run -it --runtime=nvidia \
     -v ${DATA_PATH}:/opt/MEGADOCK/data \
     akiyamalab/megadock:gpu  \
     megadock-gpu -R ${RECEPTOR}.pdb -L ${LIGAND}.pdb
