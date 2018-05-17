@@ -13,17 +13,13 @@ before_install:
   - sudo docker -v
 
 before_script:
-  - git clone https://github.com/akiyamalab/MEGADOCK.git
-#  - sudo docker build . -f Dockerfiles/Dockerfile.cpu -t akiyamalab/megadock:cpu
-  - sudo docker build . -f Dockerfiles/Dockerfile.mpi -t akiyamalab/megadock:mpi
+  - sudo docker build . -f Dockerfiles/cpu/Dockerfile -t akiyamalab/megadock:cpu
   
 script:
-#  - sudo docker run  -it akiyamalab/megadock:cpu  megadock -R 1gcq_r.pdb -L 1gcq_r.pdb
-  - sudo docker run  -it akiyamalab/megadock:mpi  mpirun -n 4 megadock-dp -tb SAMPLE.table
+  - sudo docker run  -it akiyamalab/cpu/megadock:cpu  megadock -R 1gcq_r.pdb -L 1gcq_r.pdb
   
 notifications:
   emails:
-    - aoyama@bi.c.titech.ac.jp
-#    - github@bi.cs.titech.ac.jp
+    - aoyama@bi.c.titech.ac.jp # github@bi.cs.titech.ac.jp
   on_success: always # default: change
   on_failure: always
