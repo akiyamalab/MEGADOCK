@@ -26,7 +26,7 @@ docker run -it --runtime=nvidia akiyamalab/megadock:gpu  megadock-gpu -R 1gcq_r.
 ### 1. build Docker image
 ```sh
 # on ${MEGADOCK_ROOT} dir
-docker build . -f Dockerfiles/Dockerfile.cpu -t akiyamalab/megadock:cpu
+docker build . -f Dockerfiles/cpu/Dockerfile -t akiyamalab/megadock:cpu
 ```
 
 ### 2. run sample
@@ -46,7 +46,7 @@ docker run -it -v ${DATA_PATH}:/opt/MEGADOCK/data akiyamalab/megadock:cpu \
 ### 1. build Docker image
 ```sh
 # on ${MEGADOCK_ROOT} dir
-docker build . -f Dockerfiles/Dockerfile.gpu -t akiyamalab/megadock:gpu
+docker build . -f Dockerfiles/gpu/Dockerfile -t akiyamalab/megadock:gpu
 ```
 
 ### 2. run sample
