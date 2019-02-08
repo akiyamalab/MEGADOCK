@@ -33,7 +33,10 @@ Please read appropriate documents for your environment.
 
 
 ## Reference
-Masahito Ohue, Takehiro Shimoda, Shuji Suzuki, Yuri Matsuzaki, Takashi Ishida, Yutaka Akiyama. MEGADOCK 4.0: an ultra-high-performance protein-protein docking software for heterogeneous supercomputers, Bioinformatics, 30(22): 3281-3283, 2014.
+Masahito Ohue, Takehiro Shimoda, Shuji Suzuki, Yuri Matsuzaki, Takashi Ishida, Yutaka Akiyama. **MEGADOCK 4.0: an ultra-high-performance protein-protein docking software for heterogeneous supercomputers**, *Bioinformatics*, 30(22): 3281-3283, 2014. http://dx.doi.org/10.1093/bioinformatics/btu532
+
+Masahito Ohue, Yuri Matsuzaki, Nobuyuki Uchikoga, Takashi Ishida, Yutaka Akiyama. **MEGADOCK: An all-to-all protein-protein interaction prediction system using tertiary structure data**, *Protein and Peptide Letters*, 21(8): 766-778, 2014. http://eurekaselect.com/112757
+
 
 ## Older Versions
 For older versions are available here.    
