@@ -82,7 +82,7 @@ FFTW_CFLAGS  ?= -I$(FFTW_INSTALL_PATH)/include
 FFTW_LDFLAGS ?= -lm -L$(FFTW_INSTALL_PATH)/lib -lfftw3f
 
 # Add new SM Versions here as devices with new Compute Capability are released
-SM_VERSIONS := sm_30
+SM_VERSIONS := sm_60
 
 # Basic directory setup for SDK
 SRCDIR     ?= src
