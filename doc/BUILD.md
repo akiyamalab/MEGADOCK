@@ -26,8 +26,8 @@ For more detailed information, please reffer to the [FAQ](http://www.bi.cs.titec
 
 ### 1. Extract tarball contents
 ```sh
-tar xzf megadock-4.0.tgz
-cd megadock-4.0
+tar xzf megadock-4.1.0.tgz
+cd megadock-4.1.0
 ```
 
 ### 2. Edit Makefile
@@ -56,8 +56,8 @@ A binary file `megadock-gpu-dp` will be generated.
 
 ### 1. Extract tarball contents
 ```sh
-tar xzf megadock-4.0.tgz
-cd megadock-4.0
+tar xzf megadock-4.1.0.tgz
+cd megadock-4.1.0
 ```
 
 ### 2. Edit Makefile
@@ -86,8 +86,8 @@ A binary file `megadock-dp` will be generated.
 
 ### 1. Extract tarball contents
 ```sh
-tar xzf megadock-4.0.tgz
-cd megadock-4.0
+tar xzf megadock-4.1.0.tgz
+cd megadock-4.1.0
 ```
 
 ### 2. Edit Makefile
@@ -118,8 +118,8 @@ A binary file `megadock-gpu` will be generated.
 
 ### 1. Extract tarball contents
 ```sh
-tar xzf megadock-4.0.tgz
-cd megadock-4.0
+tar xzf megadock-4.1.0.tgz
+cd megadock-4.1.0
 ```
 
 ### 2. Edit Makefile

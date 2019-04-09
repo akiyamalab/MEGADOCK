@@ -82,7 +82,7 @@ FFTW_CFLAGS  ?= -I$(FFTW_INSTALL_PATH)/include
 FFTW_LDFLAGS ?= -lm -L$(FFTW_INSTALL_PATH)/lib -lfftw3f
 
 # Add new SM Versions here as devices with new Compute Capability are released
-SM_VERSIONS := sm_21
+SM_VERSIONS := sm_60
 
 # Basic directory setup for SDK
 SRCDIR     ?= src
@@ -182,7 +182,7 @@ endef
 # function interprets it as make commands.
 $(foreach smver,$(SM_VERSIONS),$(eval $(call SMVERSION_template,$(smver))))
 
-$(TARGET): messeages makedirectories $(OBJS) decoygen Makefile
+$(TARGET): messeages makedirectories $(OBJS) decoygen calcrg Makefile
 	$(VERBOSE)$(LINKLINE)
 
 messeages :
@@ -196,6 +196,9 @@ makedirectories :
 decoygen : $(SRCDIR)/decoygen.cpp
 	$(VERBOSE)$(CPPCOMPILER) $(SRCDIR)/decoygen.cpp -lm -o decoygen
 
+calcrg : $(SRCDIR)/calcrg.cpp
+	$(VERBOSE)$(CPPCOMPILER) $(SRCDIR)/calcrg.cpp -o calcrg
+
 .PHONY : clean allclean
 clean :
 	$(VERBOSE)rm -rf $(ROOTOBJDIR)
@@ -203,4 +206,4 @@ clean :
 
 allclean :
 	$(VERBOSE)rm -rf obj_cs obj_gs obj_cm obj_gm
-	$(VERBOSE)rm -f megadock megadock-gpu megadock-dp megadock-gpu-dp decoygen
+	$(VERBOSE)rm -f megadock megadock-gpu megadock-dp megadock-gpu-dp decoygen calcrg

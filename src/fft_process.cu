@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Tokyo Institute of Technology
+ * Copyright (C) 2008-2019 Tokyo Institute of Technology
  *
  *
  * This file is part of MEGADOCK.
@@ -36,9 +36,6 @@
 #define NUM_THREADS 512 //should be power of 2
 
 #ifdef CUFFT
-#include <thrust/device_vector.h>
-#include <thrust/device_ptr.h>
-#include <thrust/sort.h>
 #include "cuda_kernel.cu"
 
 #endif
@@ -162,13 +159,6 @@ void FFTProcess::alloc_fft()
     top_score_host = new float*[num_gpu];
     top_index_host = new int*[num_gpu];
 
-    //t>1
-    temp_score_gpu_vec.resize(num_gpu);
-    temp_index_gpu_vec.resize(num_gpu);
-    temp_score_gpu_ptr = new float*[num_gpu];
-    temp_index_gpu_ptr = new int*[num_gpu];
-    temp_score_host = new float*[num_gpu];
-    temp_index_host = new int*[num_gpu];
 
     for(int gpu_id = 0; gpu_id < num_gpu; gpu_id++) {
         cudaSetDevice(gpu_id);
@@ -198,12 +188,6 @@ void FFTProcess::alloc_fft()
         top_score_host[gpu_id] = new float[nBlocks_nf3];
         top_index_host[gpu_id] = new int[nBlocks_nf3];
 
-        if(num_sort!=1) {
-            temp_score_gpu_vec[gpu_id].resize(nf3);
-            temp_index_gpu_vec[gpu_id].resize(nf3);
-            temp_score_host[gpu_id] = new float[num_sort];
-            temp_index_host[gpu_id] = new int[num_sort];
-        }
     }
 
     _cputime->record_malloc( sizeof(float)*nBlocks_nf3*num_gpu + sizeof(int)*nBlocks_nf3*num_gpu );
@@ -606,36 +590,39 @@ void FFTProcess::cuda_fft(float *grid_r,float *grid_i,float *grid_coord,float *a
         _Select[myid2][i].score = -99999.0;
     }
 
+    max_pos_single<<<nBlocks_nf3, nThreads, sizeof(float)*nThreads>>>(nf3, CUFFTout_gpu[myid2],  top_score_gpu[myid2], top_index_gpu[myid2]);
+    checkCudaErrors( cudaDeviceSynchronize() );
+
+    if(myid2==0) gettimeofday(&et3,NULL);
+    checkCudaErrors( cudaMemcpy(top_score_host[myid2],top_score_gpu[myid2],sizeof(float)*nBlocks_nf3,cudaMemcpyDeviceToHost) );
+    checkCudaErrors( cudaMemcpy(top_index_host[myid2],top_index_gpu[myid2],sizeof(int)*nBlocks_nf3,cudaMemcpyDeviceToHost) );
+    if(myid2==0) gettimeofday(&et4,NULL);
+    if(myid2==0) _cputime->t6_data_transfer_in_loop += (et4.tv_sec-et3.tv_sec + (float)((et4.tv_usec-et3.tv_usec)*1e-6));
+    checkCudaErrors( cudaDeviceSynchronize() );
+
     if(num_sort!=1) {
-        temp_score_gpu_ptr[myid2] = thrust::raw_pointer_cast(&temp_score_gpu_vec[myid2][0]);
-        temp_index_gpu_ptr[myid2] = thrust::raw_pointer_cast(&temp_index_gpu_vec[myid2][0]);
-
-        max_pos_multi_set<<<nBlocks_nf3, nThreads>>>(nf3, CUFFTout_gpu[myid2],temp_score_gpu_ptr[myid2],temp_index_gpu_ptr[myid2]);
-
-        thrust::sort_by_key(temp_score_gpu_vec[myid2].begin(), temp_score_gpu_vec[myid2].end(), temp_index_gpu_vec[myid2].begin(), thrust::greater<float>());
-
-        checkCudaErrors( cudaMemcpy(temp_score_host[myid2],temp_score_gpu_ptr[myid2],sizeof(float)*num_sort,cudaMemcpyDeviceToHost) );
-        checkCudaErrors( cudaMemcpy(temp_index_host[myid2],temp_index_gpu_ptr[myid2],sizeof(int)*num_sort,cudaMemcpyDeviceToHost) );
-
-        for( int i = 0 ; i < num_sort ; i++ ) {
-            //printf(" RESULT[%d]: %d, %f\n",i,temp_index_host[myid2][i],temp_score_host[myid2][i]/nf3);
-            _Select[myid2][i].score    = temp_score_host[myid2][i] / nf3;
-            _Select[myid2][i].index[1] = temp_index_host[myid2][i] / nf2;
-            _Select[myid2][i].index[2] = (temp_index_host[myid2][i] / nf1) % nf1;
-            _Select[myid2][i].index[3] = temp_index_host[myid2][i] % nf1;
+        for(int i=0; i<nBlocks_nf3; i++) {
+            if(top_index_host[myid2][i]/nf2 > nf1 || top_index_host[myid2][i] < 0){
+                top_score_host[myid2][i] = -99999.99;
+                //printf(" error, %d | score, %f \n", top_index_host[myid2][i]/nf2, top_score_host[myid2][i]);
+            }
+            const float raw = top_score_host[myid2][i];
+            if( raw < _Select[myid2][num_sort-1].score) continue;
+            for( int j = 0 ; j < num_sort ; j++ ) {
+                if( raw > _Select[myid2][j].score ) {
+                    for( int k = num_sort-1 ; k > j ; k-- ) {
+                        _Select[myid2][k] = _Select[myid2][k-1];
+                    }
+                    _Select[myid2][j].score    = raw;
+                    _Select[myid2][j].index[1] = i / nf2;
+                    _Select[myid2][j].index[2] = (i / _Num_fft) % _Num_fft;
+                    _Select[myid2][j].index[3] = i % _Num_fft;
+                    break;
+                }
+            }
         }
 
     } else { // num_sort = 1, select only 1 score per 1 ligand angle
-        max_pos_single<<<nBlocks_nf3, nThreads, sizeof(float)*nThreads>>>(nf3, CUFFTout_gpu[myid2],  top_score_gpu[myid2], top_index_gpu[myid2]);
-        checkCudaErrors( cudaDeviceSynchronize() );
-
-        if(myid2==0) gettimeofday(&et3,NULL);
-        checkCudaErrors( cudaMemcpy(top_score_host[myid2],top_score_gpu[myid2],sizeof(float)*nBlocks_nf3,cudaMemcpyDeviceToHost) );
-        checkCudaErrors( cudaMemcpy(top_index_host[myid2],top_index_gpu[myid2],sizeof(int)*nBlocks_nf3,cudaMemcpyDeviceToHost) );
-        if(myid2==0) gettimeofday(&et4,NULL);
-        if(myid2==0) _cputime->t6_data_transfer_in_loop += (et4.tv_sec-et3.tv_sec + (float)((et4.tv_usec-et3.tv_usec)*1e-6));
-        checkCudaErrors( cudaDeviceSynchronize() );
-
         for(int i=0; i<nBlocks_nf3; i++) {
             if(top_index_host[myid2][i]/nf2 > nf1 || top_index_host[myid2][i] < 0){
                 top_score_host[myid2][i] = -99999.99;
@@ -855,7 +842,7 @@ void FFTProcess::fft_memory_free()
 
 #ifdef CUFFT
 
-    const int num_sort = _parameter->_Num_sort;
+    //const int num_sort = _parameter->_Num_sort;
     const int nThreads = NUM_THREADS;
     const int nBlocks_nf3 = (nf3 + (nThreads-1)) / nThreads;
 
@@ -893,10 +880,6 @@ void FFTProcess::fft_memory_free()
         delete [] top_score_host[gpu_id];
         delete [] top_index_host[gpu_id];
 
-        if(num_sort!=1) {
-            delete [] temp_score_host[gpu_id];
-            delete [] temp_index_host[gpu_id];
-        }
     }
 
     _cputime->record_free( sizeof(float)*nBlocks_nf3*num_gpu + sizeof(int)*nBlocks_nf3*num_gpu );

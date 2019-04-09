@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Tokyo Institute of Technology
+ * Copyright (C) 2008-2019 Tokyo Institute of Technology
  *
  *
  * This file is part of MEGADOCK.
@@ -34,9 +34,9 @@
 
 #ifdef CUFFT
 #include <helper_cuda.h>
-#define VERSION "4.0.2 for GPU & "
+#define VERSION "4.1.0 for GPU & "
 #else
-#define VERSION "4.0.2 for CPU & "
+#define VERSION "4.1.0 for CPU & "
 #endif
 
 #ifdef MPI_DP
@@ -45,7 +45,7 @@
 #define VTEXT "single node"
 #endif
 
-#define LASTUPDATED "March 3, 2015"
+#define LASTUPDATED "26 March, 2019"
 
 //============================================================================//
 #ifdef MPI_DP
@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
 
 
     cout << " MEGADOCK ver. "<< VERSION << VTEXT <<  endl;
-    cout << "      megadock@bi.cs.titech.ac.jp   lastupdated: " << LASTUPDATED << endl;
+    cout << "      megadock@bi.c.titech.ac.jp   lastupdated: " << LASTUPDATED << endl;
     cout << endl;
 
     _cputime = new CPUTime();
