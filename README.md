@@ -23,9 +23,9 @@
 | [CUDA SDK code samples](https://developer.nvidia.com/cuda-zone) | x           |             | x   |     | **same version as CUDA Toolkit** |
 
 ## Installation
-Please read appropriate documents for your environment.  
+For installation details, please read appropriate section on followings:
 - [doc/BUILD.md](./doc/BUILD.md)
-- [doc/ABOUT_MEGADOCK.md](./doc/ABOUT_MEGADOCK.md)
+- [doc/README.md](./doc/README.md)
 
 ### MEGADOCK for Docker
 - Prebuild image : [akiyamalab/megadock](https://hub.docker.com/r/akiyamalab/megadock/) (Docker Hub)
