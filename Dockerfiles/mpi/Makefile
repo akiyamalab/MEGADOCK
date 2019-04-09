@@ -196,8 +196,8 @@ makedirectories :
 decoygen : $(SRCDIR)/decoygen.cpp
 	$(VERBOSE)$(CPPCOMPILER) $(SRCDIR)/decoygen.cpp -lm -o decoygen
 
-calcrg : calcrg.cpp
-	$(VERBOSE)$(CPPCOMPILER) calcrg.cpp -o calcrg
+calcrg : $(SRCDIR)/calcrg.cpp
+	$(VERBOSE)$(CPPCOMPILER) $(SRCDIR)/calcrg.cpp -o calcrg
 
 .PHONY : clean allclean
 clean :
