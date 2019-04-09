@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Tokyo Institute of Technology
+ * Copyright (C) 2008-2019 Tokyo Institute of Technology
  *
  *
  * This file is part of MEGADOCK.
@@ -44,8 +44,8 @@
 #ifdef CUFFT
 #include "helper_cuda.h"
 #include "cufft.h"
-#include <thrust/device_vector.h>
-#include <thrust/device_ptr.h>
+//#include <thrust/device_vector.h>
+//#include <thrust/device_ptr.h>
 
 #endif
 
@@ -94,13 +94,6 @@ private:
     float **mole_center_coord_gpu;
     float **ligand_rotation_angle_gpu;
 
-    // for sorting (t > 1)
-    vector< thrust::device_vector<float> > temp_score_gpu_vec;
-    vector< thrust::device_vector<int> > temp_index_gpu_vec;
-    float **temp_score_gpu_ptr;
-    int **temp_index_gpu_ptr;
-    float **temp_score_host;
-    int **temp_index_host;
 
 #endif /* CUFFT */
 
@@ -173,14 +166,6 @@ public:
         delete [] mole_center_coord_gpu;
         delete [] ligand_rotation_angle_gpu;
 
-        vector< thrust::device_vector<float> > tmp_sc;
-        vector< thrust::device_vector<int> > tmp_in;
-        temp_score_gpu_vec.swap(tmp_sc);
-        temp_index_gpu_vec.swap(tmp_in);
-        delete [] temp_score_gpu_ptr;
-        delete [] temp_index_gpu_ptr;
-        delete [] temp_score_host;
-        delete [] temp_index_host;
 
 #endif
 
