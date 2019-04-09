@@ -1,6 +1,6 @@
-# MEGADOCK 4.0
+# MEGADOCK
 
-**MEGADOCK 4.0** is a structural bioinformatics software for FFT-grid-based protein-protein using MPI/OpenMP/GPU parallelization.
+**MEGADOCK** is a structural bioinformatics software for FFT-grid-based protein-protein using MPI/OpenMP/GPU parallelization.
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](LICENSE)
 [![Build Status](https://travis-ci.org/akiyamalab/MEGADOCK.svg?branch=master)](https://travis-ci.org/akiyamalab/MEGADOCK)
