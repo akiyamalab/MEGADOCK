@@ -23,7 +23,7 @@ OMPFLAG           ?= -fopenmp
 USE_GPU    := 1
  # (If you do not use GPU, please set the value as 0 or comment out of the line.)
 
-USE_MPI    := 1
+USE_MPI    := 0
  # (If you do not use MPI, please set the value as 0 or comment out of the line.) 
 
 #                                                           #
