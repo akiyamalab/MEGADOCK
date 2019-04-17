@@ -34,9 +34,9 @@ unzip master.zip
 cd MEGADOCK-master
 
 # from webpage (tar)
-wget http://www.bi.cs.titech.ac.jp/megadock/archives/megadock-4.1.0.tgz
-tar xvzf megadock-4.1.0.tgz
-cd megadock-4.1.0
+wget http://www.bi.cs.titech.ac.jp/megadock/archives/megadock-4.1.1.tgz
+tar xvzf megadock-4.1.1.tgz
+cd megadock-4.1.1
 ```
 
 
