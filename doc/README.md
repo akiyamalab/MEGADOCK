@@ -7,42 +7,36 @@ It optimizes shape complementarity (rPSC function), electrostatic energies, and 
 MEGADOCK version 4 assumes running on GPU-based supercomputer like TSUBAME 3.0, Tokyo Institute of Technology, Japan.  
 However, you can compile and run the program on other cluster systems or personal computers by modifying appropriate parameters in Makefile.  
 
-## Build
+## About software installation
 
-[doc/BUILD.md](./BUILD.md)
+Please read the [doc/BUILD.md](./BUILD.md) document.
 
-
-## Example
-
-### move to example data directory
-```
-cd ./data
-```
+## Usage
 
 ### a) GPU & MPI (e.g. 4 MPI processes)
 ```sh
-mpirun -n 4 ../megadock-gpu-dp -tb SAMPLE.table
+mpirun -n 4 ./megadock-gpu-dp -tb data/SAMPLE.table
 
-# for using `HOSTS` file (HOSTS is node list file)
-# mpirun -n 4 -hostfile HOSTS ../megadock-gpu-dp -tb SAMPLE.table
+# for using `HOSTS` file (HOSTS is a node list file)
+# mpirun -n 4 -hostfile HOSTS ./megadock-gpu-dp -tb data/SAMPLE.table
 ```
 
 ### b) CPU & MPI (e.g. 4 MPI processes)
 ```sh
-mpirun -n 4 ../megadock-dp -tb SAMPLE.table
+mpirun -n 4 ./megadock-dp -tb data/SAMPLE.table
 
-# for using `HOSTS` file (HOSTS is node list file)
-# mpirun -n 4 -hostfile HOSTS ../megadock-dp -tb SAMPLE.table
+# for using `HOSTS` file (HOSTS is a node list file)
+# mpirun -n 4 -hostfile HOSTS ./megadock-dp -tb data/SAMPLE.table
 ```
 
 ### c) GPU single node
 ```sh
-../megadock-gpu -R receptor.pdb -L ligand.pdb
+./megadock-gpu -R data/receptor.pdb -L data/ligand.pdb
 ```
 
 ### d) CPU single node
 ```sh
-../megadock -R receptor.pdb -L ligand.pdb
+./megadock -R data/receptor.pdb -L data/ligand.pdb
 ```
 
 
