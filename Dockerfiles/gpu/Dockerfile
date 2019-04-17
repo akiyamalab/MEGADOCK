@@ -31,6 +31,8 @@ COPY Dockerfiles/gpu/Makefile ${MEGADOCK_WORK_DIR}/Makefile
 RUN cd ${MEGADOCK_WORK_DIR} && \
     make -j$(nproc)
 
+WORKDIR ${MEGADOCK_WORK_DIR}
+
 RUN ln -s ${MEGADOCK_WORK_DIR}/megadock-gpu /usr/local/bin/megadock-gpu && \
     ln -s ${MEGADOCK_WORK_DIR}/decoygen /usr/local/bin/decoygen && \
     ln -s ${MEGADOCK_WORK_DIR}/block /usr/local/bin/block && \
