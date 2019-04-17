@@ -22,127 +22,129 @@ For more detailed information, please reffer to the [FAQ](http://www.bi.cs.titec
 --------------------------------------------------------
 
 
-## Compile (a): GPU, MPI & OpenMP hybrid parallelization
-
-### 1. Extract tarball contents
+## 1. Get source code and change directory
 ```sh
-tar xzf megadock-4.1.0.tgz
-cd megadock-4.1.0
+# from GitHub (clone)
+git clone https://github.com/akiyamalab/MEGADOCK.git
+cd MEGADOCK
+
+# from GitHub (zip)
+wget https://github.com/akiyamalab/MEGADOCK/archive/master.zip
+unzip master.zip
+cd MEGADOCK-master
+
+# from webpage (tar)
+wget http://www.bi.cs.titech.ac.jp/megadock/archives/megadock-4.1.1.tgz
+tar xvzf megadock-4.1.1.tgz
+cd megadock-4.1.1
 ```
 
-### 2. Edit Makefile
+
+## 2-a: Compile for GPU, MPI & OpenMP hybrid parallelization
+
+### Edit Makefile (PATH, options)
+
+#### PATH
 ```Makefile
-CUDA_INSTALL_PATH ?= your/cuda/toolkit/install/path (default: /usr/local/cuda )
-CUDA_SAMPLES_PATH ?= your/cuda/sdk/install/path     (default: ${HOME}/samples )
-FFTW_INSTALL_PATH ?= your/fftw/library/install/path (default: /usr/local      )
-CPPCOMPILER       ?= icpc, g++ or others
-MPICOMPILER       ?= mpicxx or others
-OPTIMIZATION      ?= -O3
-OMPFLAG           ?= -openmp (intel) or -fopenmp (g++)
+CUDA_INSTALL_PATH ?= your/cuda/toolkit/install/path # default: /usr/local/cuda
+CUDA_SAMPLES_PATH ?= your/cuda/sdk/install/path     # default: /usr/local/cuda/samples
+FFTW_INSTALL_PATH ?= your/fftw/library/install/path # default: /usr/local
+CPPCOMPILER       ?= g++                            # default: g++ (or icpc, others)
+MPICOMPILER       ?= mpicxx                         # default: mpicxx (or others)
+OPTIMIZATION      ?= -O3                            # 
+OMPFLAG           ?= -fopenmp                       # default: -fopenmp (g++), or -openmp, -qopenmp (intel)
+```
+#### Options
+```
+USE_GPU := 1
+USE_MPI := 1
 ```
 
-### 3. Compile 
+### make
+After completion of `make` command, a binary file `megadock-gpu-dp` will be generated.
 ```sh
 make
 ```
 
-A binary file `megadock-gpu-dp` will be generated. 
-
-
 --------------------------------------------------------
 
+## 2-b: Compile for MPI & OpenMP hybrid parallelization (no use GPU)
 
-## Compile (b): MPI & OpenMP hybrid parallelization (no use GPU)
+### Edit Makefile (PATH, options)
 
-### 1. Extract tarball contents
-```sh
-tar xzf megadock-4.1.0.tgz
-cd megadock-4.1.0
-```
-
-### 2. Edit Makefile
+#### PATH
 ```Makefile
-FFTW_INSTALL_PATH ?= your/fftw/library/install/path (default: /usr/local )
-CPPCOMPILER       ?= icpc, g++ or others
-MPICOMPILER       ?= mpicxx or others
-OPTIMIZATION      ?= -O3
-OMPFLAG           ?= -openmp (intel) or -fopenmp (g++)
-
+FFTW_INSTALL_PATH ?= your/fftw/library/install/path # default: /usr/local
+CPPCOMPILER       ?= g++                            # default: g++ (or icpc, others)
+MPICOMPILER       ?= mpicxx                         # default: mpicxx (or others)
+OPTIMIZATION      ?= -O3                            # 
+OMPFLAG           ?= -fopenmp                       # default: -fopenmp (g++), or -openmp, -qopenmp (intel)
+```
+#### Options
+```
 USE_GPU := 0
+USE_MPI := 1
 ```
 
-### 3. Compile
+### make
+After completion of `make` command, a binary file `megadock-dp` will be generated.
 ```sh
 make
 ```
 
-A binary file `megadock-dp` will be generated.
-
-
 --------------------------------------------------------
 
+## 2-c: Compile for GPU parallelization (on single node)
 
-## Compile (c): GPU parallelization (on single node)
+### Edit Makefile (PATH, options)
 
-### 1. Extract tarball contents
-```sh
-tar xzf megadock-4.1.0.tgz
-cd megadock-4.1.0
-```
-
-### 2. Edit Makefile
+#### PATH
 ```Makefile
-CUDA_INSTALL_PATH ?= your/cuda/toolkit/install/path (default: /usr/local/cuda )
-CUDA_SAMPLES_PATH ?= your/cuda/sdk/install/path     (default: ${HOME}/samples )
-FFTW_INSTALL_PATH ?= your/fftw/library/install/path (default: /usr/local      )
-CPPCOMPILER       ?= icpc, g++ or others
-OPTIMIZATION      ?= -O3
-OMPFLAG           ?= -openmp (intel) or -fopenmp (g++)
-
+CUDA_INSTALL_PATH ?= your/cuda/toolkit/install/path # default: /usr/local/cuda
+CUDA_SAMPLES_PATH ?= your/cuda/sdk/install/path     # default: /usr/local/cuda/samples
+FFTW_INSTALL_PATH ?= your/fftw/library/install/path # default: /usr/local
+CPPCOMPILER       ?= g++                            # default: g++ (or icpc, others)
+OPTIMIZATION      ?= -O3                            # 
+OMPFLAG           ?= -fopenmp                       # default: -fopenmp (g++), or -openmp, -qopenmp (intel)
+```
+#### Options
+```
+USE_GPU := 1
 USE_MPI := 0
 ```
 
-### 3. Compile
+### make
+After completion of `make` command, a binary file `megadock-gpu` will be generated.
 ```sh
 make
 ```
 
-A binary file `megadock-gpu` will be generated.
-
-
 --------------------------------------------------------
 
+## 2-d: Compile for CPU single node (only thread parallelization)
 
+### Edit Makefile (PATH, options)
 
-## Compile (d): CPU single node (only thread parallelization)
-
-### 1. Extract tarball contents
-```sh
-tar xzf megadock-4.1.0.tgz
-cd megadock-4.1.0
-```
-
-### 2. Edit Makefile
+#### PATH
 ```Makefile
-FFTW_INSTALL_PATH ?= your/fftw/library/install/path (default: /usr/local )
-CPPCOMPILER       ?= icpc, g++ or others
-OPTIMIZATION      ?= -O3
-OMPFLAG           ?= -openmp (intel) or -fopenmp (g++)
-
+FFTW_INSTALL_PATH ?= your/fftw/library/install/path # default: /usr/local
+CPPCOMPILER       ?= g++                            # default: g++ (or icpc, others)
+OPTIMIZATION      ?= -O3                            # 
+OMPFLAG           ?= -fopenmp                       # default: -fopenmp (g++), or -openmp, -qopenmp (intel)
+```
+#### Options
+```
 USE_GPU := 0
 USE_MPI := 0
 ```
 
-### 3. Compile
+### make
+After completion of `make` command, a binary file `megadock` will be generated.
 ```sh
 make
 ```
 
-A binary file `megadock` will be generated.
-
-
 --------------------------------------------------------
-
 
 ## Clean up all files
 

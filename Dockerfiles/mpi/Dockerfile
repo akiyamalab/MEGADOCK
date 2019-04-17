@@ -39,7 +39,7 @@ RUN ln -s ${MEGADOCK_WORK_DIR}/megadock-dp /usr/local/bin/megadock-dp && \
     ln -s ${MEGADOCK_WORK_DIR}/block /usr/local/bin/block && \
     ln -s ${MEGADOCK_WORK_DIR}/ppiscore /usr/local/bin/ppiscore
 
-WORKDIR ${MEGADOCK_WORK_DIR}/data
+WORKDIR ${MEGADOCK_WORK_DIR}
 
 # CONFIGURATION
 ENV OMP_NUM_THREADS 8

@@ -13,10 +13,12 @@ Docker images can be downloaded from DockerHub.
 ## Simple Example
 ```sh
 # CPU single node (OpenMP parallelization)
-docker run -it akiyamalab/megadock:cpu  megadock -R 1gcq_r.pdb -L 1gcq_r.pdb
+docker run -it akiyamalab/megadock:cpu  \
+  megadock -R data/1gcq_r.pdb -L data/1gcq_l.pdb
 
 # GPU single node (GPU parallelization)
-docker run -it --runtime=nvidia akiyamalab/megadock:gpu  megadock-gpu -R 1gcq_r.pdb -L 1gcq_r.pdb
+docker run -it --runtime=nvidia akiyamalab/megadock:gpu  \
+  megadock-gpu -R data/1gcq_r.pdb -L data/1gcq_l.pdb
 ```
 
 ----
@@ -32,11 +34,11 @@ docker build . -f Dockerfiles/cpu/Dockerfile -t akiyamalab/megadock:cpu
 ### 2. run sample
 ```sh
 docker run -it akiyamalab/megadock:cpu \
-    megadock -R 1gcq_r.pdb -L 1gcq_r.pdb
+    megadock -R data/1gcq_r.pdb -L data/1gcq_l.pdb
 
 # run with your pdb ( ${DATA_PATH} = your pdb-data directory abs path  )
 docker run -it -v ${DATA_PATH}:/opt/MEGADOCK/data akiyamalab/megadock:cpu \
-    megadock -R ${RECEPTOR}.pdb -L ${LIGAND}.pdb
+    megadock -R data/${RECEPTOR}.pdb -L data/${LIGAND}.pdb
 ```
 
 ## GPU single node (GPU parallelization)
@@ -52,9 +54,9 @@ docker build . -f Dockerfiles/gpu/Dockerfile -t akiyamalab/megadock:gpu
 ### 2. run sample
 ```sh
 docker run -it --runtime=nvidia akiyamalab/megadock:gpu \
-    megadock-gpu -R 1gcq_r.pdb -L 1gcq_r.pdb
+    megadock-gpu -R data/1gcq_r.pdb -L data/1gcq_l.pdb
 
 # run with your pdb ( ${DATA_PATH} = your pdb-data directory abs path  )
 docker run -it --runtime=nvidia -v ${DATA_PATH}:/opt/MEGADOCK/data akiyamalab/megadock:gpu \
-    megadock-gpu -R ${RECEPTOR}.pdb -L ${LIGAND}.pdb
+    megadock-gpu -R data/${RECEPTOR}.pdb -L data/${LIGAND}.pdb
 ```

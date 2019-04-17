@@ -31,9 +31,10 @@ COPY Dockerfiles/cpu/Makefile ${MEGADOCK_WORK_DIR}/Makefile
 RUN cd ${MEGADOCK_WORK_DIR} && \
     make -j$(nproc)
 
+WORKDIR ${MEGADOCK_WORK_DIR}
+
 RUN ln -s ${MEGADOCK_WORK_DIR}/megadock /usr/local/bin/megadock && \
     ln -s ${MEGADOCK_WORK_DIR}/decoygen /usr/local/bin/decoygen && \
     ln -s ${MEGADOCK_WORK_DIR}/block /usr/local/bin/block && \
     ln -s ${MEGADOCK_WORK_DIR}/ppiscore /usr/local/bin/ppiscore
 
-WORKDIR ${MEGADOCK_WORK_DIR}/data
