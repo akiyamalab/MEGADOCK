@@ -7,13 +7,13 @@
 # Library PATH and compiler settings           #
 #----------------------------------------------#
 
-CUDA_INSTALL_PATH ?= /opt/cuda/6.0
-CUDA_SAMPLES_PATH ?= /opt/cuda/6.0/samples
-FFTW_INSTALL_PATH ?= /work0/t2gmegadock/share/fftw
-CPPCOMPILER       ?= icpc
+CUDA_INSTALL_PATH ?= /usr/local/cuda
+CUDA_SAMPLES_PATH ?= /usr/local/cuda/samples
+FFTW_INSTALL_PATH ?= /usr/local
+CPPCOMPILER       ?= g++
 MPICOMPILER       ?= mpicxx
 OPTIMIZATION      ?= -O3
-OMPFLAG           ?= -openmp
+OMPFLAG           ?= -fopenmp
  # (If you use g++ compiler, please set the value as "-fopenmp".)
 
 #----------------------------------------------#
