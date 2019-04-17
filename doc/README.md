@@ -1,4 +1,4 @@
-              M E G A D O C K  version 4.1.0        R E A D M E 
+              M E G A D O C K  version 4.1.1        R E A D M E 
 ===============================================================================
 
 MEGADOCK is a ZDOCK like protein-protein docking program suitable for executing multiple docking jobs on heterogeneous supercomputers.  

@@ -34,9 +34,9 @@
 
 #ifdef CUFFT
 #include <helper_cuda.h>
-#define VERSION "4.1.0 for GPU & "
+#define VERSION "4.1.1 for GPU & "
 #else
-#define VERSION "4.1.0 for CPU & "
+#define VERSION "4.1.1 for CPU & "
 #endif
 
 #ifdef MPI_DP
