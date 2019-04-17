@@ -16,7 +16,7 @@ before_script:
   - sudo docker build . -f Dockerfiles/cpu/Dockerfile -t akiyamalab/megadock:cpu
   
 script:
-  - sudo docker run  -it akiyamalab/megadock:cpu  megadock -R 1gcq_r.pdb -L 1gcq_r.pdb
+  - sudo docker run  -it akiyamalab/megadock:cpu  megadock -R data/1gcq_r.pdb -L data/1gcq_r.pdb
   
 notifications:
   emails:
