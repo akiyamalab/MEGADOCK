@@ -1,6 +1,6 @@
 # MEGADOCK
 
-**MEGADOCK** is a structural bioinformatics software for FFT-grid-based protein-protein using MPI/OpenMP/GPU parallelization.
+**MEGADOCK** is an ultra-high-performance protein-protein prediction software for heterogeneous supercomputers using FFT-grid-based docking with MPI/OpenMP/GPU parallelization.
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](LICENSE)
 [![Build Status](https://travis-ci.org/akiyamalab/MEGADOCK.svg?branch=master)](https://travis-ci.org/akiyamalab/MEGADOCK)
@@ -42,12 +42,12 @@ Masahito Ohue, Yuri Matsuzaki, Nobuyuki Uchikoga, Takashi Ishida, Yutaka Akiyama
 For older versions are available here.    
 [http://www.bi.cs.titech.ac.jp/megadock/archives/](http://www.bi.cs.titech.ac.jp/megadock/archives/)
 
-## Lisence
-MEGADOCK is open source licensed under the GNU General Public License, version 3 or later. 
+## License
+MEGADOCK is open source licensed under the GNU General Public License, version 3 or later. (See [License](./LICENSE))
 
 ## Fundings
 This work is partially supported by JSPS Grant-in-Aid for Scientific Research (KAKENHI) (A) Grant Number 24240044.
 
 ----
-Copyright © 2014-2018 Akiyama Laboratory, Tokyo Institute of Technology, All Rights Reserved.
+Copyright © 2014-2019 Akiyama Laboratory, Tokyo Institute of Technology, All Rights Reserved.
 
