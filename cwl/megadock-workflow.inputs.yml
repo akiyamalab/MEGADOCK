@@ -1,0 +1,20 @@
+# This file is the CWL version of ../data/SAMPLE.table
+receptors: 
+  - class: File
+    path: ../data/1gcq_r.pdb
+  - class: File
+    path: ../data/1gcq_r.pdb
+  - class: File
+    path: ../data/1gcq_l.pdb
+  - class: File
+    path: ../data/1gcq_l.pdb
+ligands:
+  - class: File
+    path: ../data/1gcq_r.pdb
+  - class: File
+    path: ../data/1gcq_l.pdb
+  - class: File
+    path: ../data/1gcq_r.pdb
+  - class: File
+    path: ../data/1gcq_l.pdb
+
