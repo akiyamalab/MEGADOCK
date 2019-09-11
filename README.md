@@ -25,7 +25,7 @@ For installation and command details, please read appropriate section on followi
   - [doc/BUILD.md](./doc/BUILD.md)
 - Build a docker container image
   - [doc/README_for_docker.md](doc/README_for_docker.md)
-    - [akiyamalab/megadock](https://hub.do  cker.com/r/akiyamalab/megadock/) (Docker Hub)
+    - [akiyamalab/megadock](https://hub.docker.com/r/akiyamalab/megadock/) (Docker Hub)
 
 
 ## Reference
