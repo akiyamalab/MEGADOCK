@@ -60,3 +60,15 @@ docker run -it --runtime=nvidia akiyamalab/megadock:gpu
 # optional) run with your pdb (e.g. ${DATA_PATH} = your pdb-data directory abs path  )
 docker run -it --runtime=nvidia -v ${DATA_PATH}:/opt/MEGADOCK/data akiyamalab/megadock:gpu megadock-gpu -R data/${RECEPTOR}.pdb -L data/${LIGAND}.pdb
 ```
+
+----
+
+### Calculate PPI score (ppiscore)
+
+```sh
+# build
+docker build . -f Dockerfiles/ppiscore/Dockerfile -t akiyamalab/megadock:ppiscore
+
+# calculate ppiscore using `.out` file
+docker run -it -v `pwd`/data:/data akiyamalab/megadock:ppiscore ppiscore /data/1gcq_r-1gcq_l.out
+```

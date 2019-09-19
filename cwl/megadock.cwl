@@ -13,12 +13,22 @@ inputs:
     type: File
   ligand:
     type: File
+  preds_per_rots:
+    type: int
+    default: 1
+  num_preds:
+    type: int
+    default: 2000
 
 arguments:
  - -R
  - $(inputs.receptor)
  - -L
  - $(inputs.ligand)
+ - -t
+ - $(inputs.preds_per_rots)
+ - -N
+ - $(inputs.num_preds)
 
 outputs:
   dockings:
