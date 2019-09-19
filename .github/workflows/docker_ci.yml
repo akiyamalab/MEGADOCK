@@ -1,0 +1,40 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches:
+    - master
+
+  pull_request:
+    branches:
+    - master
+
+jobs:
+
+  build-cpu:
+    name: build megadock-cpu
+    runs-on: ubuntu-latest
+ 
+    steps:
+    - name: checkout
+      uses: actions/checkout@master
+
+    - name: build
+      run: docker build . --file Dockerfiles/cpu/Dockerfile --tag megadock:cpu
+      
+    - name: test
+      run: docker run megadock:cpu megadock -R data/1gcq_r.pdb -L data/1gcq_l.pdb
+
+  build-gpu:
+    name: build megadock-gpu
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout
+      uses: actions/checkout@master
+
+    - name: build
+      run: docker build . --file Dockerfiles/gpu/Dockerfile --tag megadock:gpu
+      
+#     - name: test
+#       run: docker run --runtime=nvidia megadock:gpu megadock-gpu -R data/1gcq_r.pdb -L data/1gcq_l.pdb
