@@ -18,7 +18,7 @@ arguments:
  - $(inputs.receptor)
  - $(inputs.decoy)
 
-stdout: $(inputs.receptor.nameroot).$(inputs.rank).decoy$(inputs.decoy.basename)
+stdout: $(inputs.receptor.nameroot)-$(inputs.decoy.nameroot).decoy.$(inputs.rank).pdb
 
 outputs:
   receptor_decoy_complex:
