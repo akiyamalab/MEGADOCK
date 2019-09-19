@@ -26,6 +26,8 @@ For installation and command details, please read appropriate section on followi
 - Build a docker container image
   - [doc/README_for_docker.md](doc/README_for_docker.md)
     - [akiyamalab/megadock](https://hub.docker.com/r/akiyamalab/megadock/) (Docker Hub)
+- Use MEGADOCK with CWL
+  - [cwl/README.md](cwl/README.md)
 
 
 ## Reference
