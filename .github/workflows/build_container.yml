@@ -1,4 +1,4 @@
-name: build and test
+name: Build containers
 
 on:
   push:
@@ -11,16 +11,13 @@ jobs:
   build-cpu:
     name: build megadock-cpu
     runs-on: ubuntu-latest
- 
+
     steps:
     - name: checkout
       uses: actions/checkout@master
 
-    - name: build
+    - name: build container
       run: docker build . --file Dockerfiles/cpu/Dockerfile --tag megadock:cpu
-      
-    - name: test
-      run: docker run megadock:cpu megadock -R data/1gcq_r.pdb -L data/1gcq_l.pdb
 
   build-gpu:
     name: build megadock-gpu
@@ -30,8 +27,29 @@ jobs:
     - name: checkout
       uses: actions/checkout@master
 
-    - name: build
+    - name: build container
       run: docker build . --file Dockerfiles/gpu/Dockerfile --tag megadock:gpu
-      
-#     - name: test
-#       run: docker run --runtime=nvidia megadock:gpu megadock-gpu -R data/1gcq_r.pdb -L data/1gcq_l.pdb
+
+  test-cpu:
+    needs: [build-cpu]
+    name: test docking example
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout
+      uses: actions/checkout@master
+
+    - name: calculate docking for example data
+      run: docker run megadock:cpu megadock -R data/1gcq_r.pdb -L data/1gcq_l.pdb
+
+  # test-gpu:
+  #   needs: [build-gpu]
+  #   name: test docking example
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #   - name: checkout
+  #     uses: actions/checkout@master
+
+  #   - name: calculate docking for example data
+  #     run: docker run --gpus all megadock:gpu megadock-gpu -R data/1gcq_r.pdb -L data/1gcq_l.pdb

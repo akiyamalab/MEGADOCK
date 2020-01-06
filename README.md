@@ -3,7 +3,8 @@
 **MEGADOCK** is an ultra-high-performance protein-protein prediction software for heterogeneous supercomputers using FFT-grid-based docking with MPI/OpenMP/GPU parallelization.
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
-[![Build Status](https://travis-ci.org/akiyamalab/MEGADOCK.svg?branch=master)](https://travis-ci.org/akiyamalab/MEGADOCK)
+
+![Build Status](https://github.com/akiyamalab/MEGADOCK/workflows/Build%20containers/badge.svg?branch=master)
 
 
 ## Target Environments
