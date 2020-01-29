@@ -200,9 +200,12 @@ __global__ void lig_vox_elec(int ng1,int na,float grid_width,float *_Charge,floa
     if(id < na) {
         //if(!fabs(_Charge[id]) < 0.0001) continue;
         const int id3 = id * 3;
-        const int   i = (atom_coord_rotated[id3  ] + pad) / grid_width;
-        const int   j = (atom_coord_rotated[id3+1] + pad) / grid_width;
-        const int   k = (atom_coord_rotated[id3+2] + pad) / grid_width;
+        //const int   i = (atom_coord_rotated[id3  ] + pad) / grid_width;
+        //const int   j = (atom_coord_rotated[id3+1] + pad) / grid_width;
+        //const int   k = (atom_coord_rotated[id3+2] + pad) / grid_width;
+        const int   i = FMAX(0, FMIN((atom_coord_rotated[id3  ] + pad) / grid_width, ng1 - 1));
+        const int   j = FMAX(0, FMIN((atom_coord_rotated[id3+1] + pad) / grid_width, ng1 - 1));
+        const int   k = FMAX(0, FMIN((atom_coord_rotated[id3+2] + pad) / grid_width, ng1 - 1));
 
         //grid_i[i*ng2+j*ng1+k] += _Charge[id];
         //printf(" %08d-1 :  %.2f, %.2f\n",i*ng2+j*ng1+k,grid_i[i*ng2+j*ng1+k],_Charge[id]);
