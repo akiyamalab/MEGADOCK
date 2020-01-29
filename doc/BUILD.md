@@ -47,11 +47,6 @@ cd MEGADOCK
 wget https://github.com/akiyamalab/MEGADOCK/archive/master.zip
 unzip master.zip
 cd MEGADOCK-master
-
-# from webpage (tar)
-wget http://www.bi.cs.titech.ac.jp/megadock/archives/megadock-4.1.1.tgz
-tar xvzf megadock-4.1.1.tgz
-cd megadock-4.1.1
 ```
 
 ## 2. Edit Makefile (PATH, options)
@@ -99,11 +94,6 @@ cd MEGADOCK
 wget https://github.com/akiyamalab/MEGADOCK/archive/master.zip
 unzip master.zip
 cd MEGADOCK-master
-
-# from webpage (tar)
-wget http://www.bi.cs.titech.ac.jp/megadock/archives/megadock-4.1.1.tgz
-tar xvzf megadock-4.1.1.tgz
-cd megadock-4.1.1
 ```
 
 ## 2. Edit Makefile (PATH, options)
@@ -147,11 +137,6 @@ cd MEGADOCK
 wget https://github.com/akiyamalab/MEGADOCK/archive/master.zip
 unzip master.zip
 cd MEGADOCK-master
-
-# from webpage (tar)
-wget http://www.bi.cs.titech.ac.jp/megadock/archives/megadock-4.1.1.tgz
-tar xvzf megadock-4.1.1.tgz
-cd megadock-4.1.1
 ```
 
 ## 2. Edit Makefile (PATH, options)
@@ -196,11 +181,6 @@ cd MEGADOCK
 wget https://github.com/akiyamalab/MEGADOCK/archive/master.zip
 unzip master.zip
 cd MEGADOCK-master
-
-# from webpage (tar)
-wget http://www.bi.cs.titech.ac.jp/megadock/archives/megadock-4.1.1.tgz
-tar xvzf megadock-4.1.1.tgz
-cd megadock-4.1.1
 ```
 
 ## 2. Edit Makefile (PATH, options)
