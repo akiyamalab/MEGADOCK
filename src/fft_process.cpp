@@ -597,10 +597,11 @@ void FFTProcess::cuda_fft(float *grid_r,float *grid_i,float *grid_coord,float *a
                     for( int k = num_sort-1 ; k > j ; k-- ) {
                         _Select[myid2][k] = _Select[myid2][k-1];
                     }
+                    const int index = top_index_host[myid2][i];
                     _Select[myid2][j].score    = raw;
-                    _Select[myid2][j].index[1] = i / nf2;
-                    _Select[myid2][j].index[2] = (i / _Num_fft) % _Num_fft;
-                    _Select[myid2][j].index[3] = i % _Num_fft;
+                    _Select[myid2][j].index[1] = index / nf2;
+                    _Select[myid2][j].index[2] = (index / _Num_fft) % _Num_fft;
+                    _Select[myid2][j].index[3] = index % _Num_fft;
                     break;
                 }
             }
