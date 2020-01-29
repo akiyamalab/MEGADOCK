@@ -216,9 +216,12 @@ void Ligand::electro(const float &beta,const float &eratio,
     for( int l = 0 ; l < na ; l++ ) { //for each atom, find nearest grid(i,j,k)
         //if(fabs(_Charge[l]) < 0.0001) continue;
         const int l3 = l * 3;
-        const int   i = (atom_coord_rotated[l3  ] + pad) / grid_width;
-        const int   j = (atom_coord_rotated[l3+1] + pad) / grid_width;
-        const int   k = (atom_coord_rotated[l3+2] + pad) / grid_width;
+        //const int   i = (atom_coord_rotated[l3  ] + pad) / grid_width;
+        //const int   j = (atom_coord_rotated[l3+1] + pad) / grid_width;
+        //const int   k = (atom_coord_rotated[l3+2] + pad) / grid_width;
+        const int   i = max(0, min(ng1 - 1, (int) ((atom_coord_rotated[l3  ] + pad) / grid_width)));
+        const int   j = max(0, min(ng1 - 1, (int) ((atom_coord_rotated[l3+1] + pad) / grid_width)));
+        const int   k = max(0, min(ng1 - 1, (int) ((atom_coord_rotated[l3+2] + pad) / grid_width)));
         
         //printf(" [%5d] [x:%12.8f,y:%12.8f,z:%12.8f] [pad:%6.3f], [%3d,%3d,%3d] \n",l,atom_coord_rotated[l3  ],atom_coord_rotated[l3+1],atom_coord_rotated[l3+2],pad,i,j,k);
         //printf(" [%5d] [x:%8.0f,y:%8.0f,z:%8.0f] [pad:%6.3f], [%3d,%3d,%3d] \n",l,atom_coord_rotated[l3  ],atom_coord_rotated[l3+1],atom_coord_rotated[l3+2],pad,i,j,k);
