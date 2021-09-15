@@ -20,18 +20,18 @@
 | [CUDA Toolkit](https://developer.nvidia.com/cuda-zone)          | yes           |             | yes   |     | `ver >= 5.0` required |
 | [CUDA SDK code samples](https://developer.nvidia.com/cuda-zone) | yes           |             | yes   |     | same version as toolkit |
 
-**Notes:** For more detailed build information, please reffer to the [FAQ](http://www.bi.cs.titech.ac.jp/megadock/faq.html) page.
+For more detailed build information, please reffer to the [FAQ](http://www.bi.cs.titech.ac.jp/megadock/faq.html) page.
 
 
 ## Section Link
 
 Please select appropriate section for your environment:
 
-- [(a) Compile for GPU cluster (GPU & MPI)](#(a)-compile-for-gpu-cluster-(gpu-&-mpi))
-- [(b) Compile for MPI cluster (MPI)](#(b)-compile-for-mpi-cluster-(mpi))
-- [(c) Compile for GPU node (GPU)](#(c)-compile-for-gpu-node-(gpu))
-- [(d) Compile for CPU node (only thread parallelization)](#(d)-compile-for-cpu-node-(only-thread-parallelization))
-
+- [(a) Compile for GPU cluster (GPU & MPI)](#a-compile-for-gpu-cluster-gpu--mpi)
+- [(b) Compile for MPI cluster (MPI)](#b-compile-for-mpi-cluster-mpi)
+- [(c) Compile for GPU node (GPU)](#c-compile-for-gpu-node-gpu)
+- [(d) Compile for CPU node (only thread parallelization)](#d-compile-for-cpu-node-only-thread-parallelization)
+- [Note for compilation](#note-for-compilation)
 ----
 
 # (a) Compile for GPU cluster (GPU & MPI)
@@ -217,3 +217,10 @@ megadock -h
 # remove generated files
 make allclean
 ```
+
+----
+
+# Note for compilation
+
+- `USE_MPI` and `USE_GPU` flags in Makefile should be `1` or `0` for all compilations. If the white spaces exist at end of the line, those flags will be ignored.
+- For GPU use, `SM_VERSIONS` can specity the target NVIDIA GPU architectures of the generated binary. Please change it for your target system. (Default: `sm_60`)
