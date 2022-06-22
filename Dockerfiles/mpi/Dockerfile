@@ -14,7 +14,7 @@ RUN apt-get install -y --no-install-recommends \
 
 
 # FFTW
-ENV FFTW_TARGET fftw-3.3.5
+ENV FFTW_TARGET fftw-3.3.8
 
 RUN wget -P /tmp http://www.fftw.org/${FFTW_TARGET}.tar.gz && \
     tar xzf /tmp/${FFTW_TARGET}.tar.gz -C /tmp && \

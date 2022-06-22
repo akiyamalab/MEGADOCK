@@ -9,7 +9,7 @@
 
 CUDA_INSTALL_PATH ?= /usr/local/cuda
 CUDA_SAMPLES_PATH ?= /usr/local/cuda/samples
-FFTW_INSTALL_PATH ?= /usr/local/fftw-3.3.5
+FFTW_INSTALL_PATH ?= /usr/local/fftw-3.3.8
 CPPCOMPILER       ?= g++
 MPICOMPILER       ?= mpicxx
 OPTIMIZATION      ?= -O3
