@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 MAINTAINER Akiyama Laboratory, Tokyo Institute of Technology <megadock@bi.cs.titech.ac.jp>
 

@@ -1,4 +1,4 @@
-FROM nvidia/cuda:9.1-devel
+FROM nvidia/cuda:11.1.1-devel-ubuntu20.04
 
 MAINTAINER Akiyama Laboratory, Tokyo Institute of Technology <megadock@bi.cs.titech.ac.jp>
 
@@ -7,7 +7,7 @@ RUN apt-get install -y --no-install-recommends \
                 wget \
                 make \
                 g++ \
-                cuda-samples-9-1 \
+                cuda-samples-11-1 \
     && rm -rf /var/lib/apt/lists/*
 
 # FFTW
