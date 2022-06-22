@@ -2,7 +2,8 @@
 
 **MEGADOCK** is an ultra-high-performance protein-protein prediction software for heterogeneous supercomputers using FFT-grid-based docking with MPI/OpenMP/GPU parallelization.
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![License: CC BY-NC 4.0](https://licensebuttons.net/l/by-nc/4.0/80x15.png)](https://creativecommons.org/licenses/by-nc/4.0/) 
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 
 ![Build Status](https://github.com/akiyamalab/MEGADOCK/workflows/Build%20containers/badge.svg?branch=master)
 
@@ -43,9 +44,8 @@ Masahito Ohue, Yuri Matsuzaki, Nobuyuki Uchikoga, Takashi Ishida, Yutaka Akiyama
 
 ## License
 
-MEGADOCK is open source licensed under the Apache License version 2.0. (See [LICENSE](./LICENSE))
-
-This software and derivatives are NOT allowed for any commercial use without formal prior authorization.
+MEGADOCK is licensed by CC BY-NC 4.0. (See [LICENSE](./LICENSE))
+This software and derivatives are NOT allowed for any commercial use without formal prior authorization by Tokyo Institute of Technology. Please contact us about commercial use. If you are considering commercial use, please contact us as there are different charged use options licensed by the Tokyo Institute of Technology.
 
 
 ## Fundings
@@ -53,4 +53,4 @@ This software and derivatives are NOT allowed for any commercial use without for
 This work is partially supported by JSPS Grant-in-Aid for Scientific Research (KAKENHI) (A) Grant Number 24240044.
 
 ----
-Copyright © 2014-2020 Akiyama Laboratory, Tokyo Institute of Technology, All Rights Reserved.
+Copyright © 2014-2022 Akiyama Laboratory, Tokyo Institute of Technology, All Rights Reserved.
