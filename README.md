@@ -45,8 +45,7 @@ Masahito Ohue, Yuri Matsuzaki, Nobuyuki Uchikoga, Takashi Ishida, Yutaka Akiyama
 ## License
 
 MEGADOCK is licensed by CC BY-NC 4.0. (See [LICENSE](./LICENSE))
-This software and derivatives are NOT allowed for any commercial use without formal prior authorization by Tokyo Institute of Technology. Please contact us about commercial use. If you are considering commercial use, please contact us as there are different charged use options licensed by the Tokyo Institute of Technology.
-
+This software and derivatives are NOT allowed for any commercial use without formal prior authorization. If you are considering commercial use, please contact us as there are differently charged use options licensed by [Ahead Biocomputing, Co. Ltd.](https://ahead-biocomputing.co.jp/en/), a private company as a Tokyo Tech Venture.
 
 ## Fundings
 
