@@ -23,7 +23,7 @@ struct parse_res {
           a1, a2, a3, t1, t2, t3, 
           rand1, rand2, rand3, spacing, score;
     int N;
-    char receptor[100], ligand[100];
+    char receptor[300], ligand[300];
 };
 
 void rotateAtom(float, float, float, float *, float *, float *,
